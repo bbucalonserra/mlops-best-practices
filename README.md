@@ -1,5 +1,26 @@
 # ML Operations - Project Life Cycle
-In this project, we'll create a machine learning model and apply best practices on it, including ML Flow to manage the life cycle of the models and track its results and Unity tests.
+In this project, we'll create a quick machine learning model and apply best practices on it, including creating an environment for Python, ML Flow environment to manage the life cycle of the experiments and track its results and unity tests.
+
+# Table of Contents
+- [1. Creating ML Flow Environment](#1-creating-ml-flow-environment)
+  - [1.1 Create Server in Anaconda](#11-create-server-in-anaconda)
+  - [1.2 Activate Server](#12-activate-server)
+  - [1.3 Install ML Flow Library](#13-install-ml-flow-library)
+  - [1.4 Server Port](#14-server-port)
+- [2. Creating Project Environment](#2-creating-project-environment)
+- [3. Setting ML Flow](#3-setting-ml-flow)
+  - [3.1 General ML Flow](#31-general-ml-flow)
+  - [3.2 Creating Model](#32-creating-model)
+  - [3.3 Creating Experiment](#33-creating-experiment)
+- [4. Code Adjustment](#4-code-adjustment)
+  - [4.1 Port and Experiment ID](#41-port-and-experiment-id)
+  - [4.2 Autolog and Metrics](#42-autolog-and-metrics)
+  - [4.3 Final Code](#43-final-code)
+- [5. Script and ML Flow](#5-script-and-ml-flow)
+  - [5.1 Runs in Experiment](#51-runs-in-experiment)
+  - [5.2 Registering Experiment in a Model](#52-registering-experiment-in-a-model)
+- [6. Productizing the Model](#6-productizing-the-model)
+- [7. Unitary Test](#7-unitary-test)
 
 ## 1. Creating ML Flow Environment
 The first step is to download Python packages and create environements with the specific configurations (e.g. Python 3.13) and libraries in specific versions. This step is really important to perform analysis and create model in a controled environment. For the project, we'll use [Anadonda](https://www.anaconda.com/), an open ecosystem for sourcing, building, and deploying data science and AI initiatives.
