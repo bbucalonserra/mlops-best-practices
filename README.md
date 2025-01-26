@@ -41,38 +41,70 @@ It's needed to find the port of the server in order to open the ML Flow in the b
 *Figure 6: Find Server Port*
 
 
-## 2. Setting ML Flow
+## 2. Creating Project Environment
+Now, we must create an environment for the churn project itself. We'll create a environment call `churn-server` using Python=3.13 (just the same way we did in the previous step), than, activate it.
+In addition, we must install all libraries in this environment, in our case, we'll install: pandas, sklearn and mlflow:
+
+![Creating Project Environment](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/churn-project-environment.PNG)  
+*Figure 7: Creating Project Environment*
+
+Thus, we must install the libraries we'll use in the environment. We must: `pip install pandas scikit-learn mlflow`:
+![Installing Libraries](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/pip-install-libraries-environment.PNG)  
+*Figure 7: Installing Libraries*
+
+**NOTE: this is the environment that the executer (KERNEL) will use to execute the python scripts.**
+
+## 3. Setting ML Flow
 Type the port into the browser and open the ML Flow. A model is associated with multiple experiments, and each experiment consists of several runs. A run represents a single execution with a specific set of parameters or configurations (e.g., testing different hyperparameters). Each run generates a distinct result, providing insights into the model's performance under those conditions. Once the runs are completed, the best-performing ones are selected for logging in the model. For example, if in Experiment 1, Run 2 yields the best results, you would log Run 2 as part of the model's versioning or final configuration. Check the flowchart below and the models and experiments screen:
 
-### 2.1 General ML Flow
+### 3.1 General ML Flow
 
 ![Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/mlflow-flow-chart.PNG)  
-*Figure 7: Flow Chart of ML Flow*
+*Figure 8: Flow Chart of ML Flow*
 
 
 ![Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/ml-flow-models.png)  
-*Figure 8: Model*
+*Figure 9: Model*
 
 
 ![Experiments](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/ml-flow-experiments.png)  
-*Figure 9: Experiments*
+*Figure 10: Experiments*
 
 
-### 2.2 Creating Model
+### 3.2 Creating Model
 We'll create our model for the project.
 ![Create Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/creating-model.PNG)  
-*Figure 10: Create Model*
+*Figure 11: Create Model*
 
 
-### 2.3 Creating Experiment
+### 3.3 Creating Experiment
 Creating an experiment for our project.
 ![Create Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/churn-experiment-created.PNG)  
-*Figure 11: Create Experiment*
+*Figure 12: Create Experiment*
 
 
 Now, the ML Flow is properly set.
 ![ML Flow Set](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/churn-model-created.PNG)  
-*Figure 12: ML Flow Set*
+*Figure 13: ML Flow Set*
+
+
+## 4 Code Adjustment
+There are a few code lines we should add in order to connect the script with ML Flow. The first one is to add the port (found in previous steps) and the experiment ID also created inthe previous step. The experiment ID can be found be clicking in the experiment information:
+
+
+![Finding Experiment ID](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/experiment-id.png)  
+*Figure 14:Finding Experiment ID*
+
+
+The code the must be add can be found below, right after importing the libraries:
+```python
+import mlflow
+
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_experiment(experiment_id=966213590755579700)
+```
+
+
 
 
 
