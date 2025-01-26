@@ -1,6 +1,6 @@
 # ML Operations - Project Life Cycle
-In this project, we'll create a quick machine learning model and apply ML Operations best practices on it, including creating an environment for Python, ML Flow environment to manage the life cycle of the experiments and track its results and unity tests.
-**NOTE: some best practices, such as usage of Cloud Computing, Databricks flow and Spark framework (instead of Pandas API) is not going to be shown here, since this is a local project.**
+In this project, we'll create a quick machine learning model and apply ML Operations best practices on it, including creating an environment for Python, ML Flow environment to manage the life cycle of the experiments and track its results and unity tests using PyTest.
+**NOTE: some best practices, such as usage of Cloud Computing, Databricks flow, clusters and Apache Spark framework (instead of Pandas API) is not going to be shown here, since this is a local project.**
 
 # Table of Contents
 - [1. Creating ML Flow Environment](#1-creating-ml-flow-environment)
@@ -260,7 +260,14 @@ proba = model.predict_proba(X)
 proba
 ```
 
-## 7. Unity Test
+## 7. Unity Test and Red-Green-Refactor
+Unit tests are additional pieces of code designed to test specific components or functions of the main code in isolation, allowing developers to verify their behavior and ensure they work as expected. For this, we'll use **Pytest**.
+
+The process RGR (Red-green-refactor) should be applied. This cycle assures that the code is ready to deploy, tested and well projected. It's divided in three parts:
+  1. Red - Write a test that fails, before writting the main code, the idea is ensure that the test is correct the the pipeline / model does not exist
+  2. Green - Implement a test that passes, it should be easy and not worring about best practices
+  3. Refactor - Rewrite the code, but now, making it cleaner, more understandable and efficient
+
 Applying unity test in order to check if the received dataset has all columns. Check the file [HERE](https://github.com/bbucalonserra/mlops-best-practices/blob/main/test/test_unitary.py).
 
 
