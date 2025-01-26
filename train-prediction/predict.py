@@ -8,10 +8,10 @@ mlflow.set_tracking_uri("http://127.0.0.1:5000")
 # %%
 
 client = mlflow.client.MlflowClient()
-version = max([int(i.version) for i in client.get_latest_versions("churn")])
+version = max([int(i.version) for i in client.get_latest_versions("churn-model")])
 
 # %%
-model = mlflow.sklearn.load_model(f"models:/churn/{version}")
+model = mlflow.sklearn.load_model(f"models:/churn-model/{version}")
 
 # %%
 
