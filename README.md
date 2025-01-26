@@ -1,8 +1,5 @@
 # MLOps Best Practices
-In this project, we'll create a machine learning model and apply best practices on it, including:
-  * ML Flow to manage the life cycle of the models and track its results
-  * Unity tests
-  * 
+In this project, we'll create a machine learning model and apply best practices on it, including ML Flow to manage the life cycle of the models and track its results and Unity tests.
 
 ## 1. Creating ML Flow Environment
 The first step is to download Python packages and create environements with the specific configurations (e.g. Python 3.13) and libraries in specific versions. This step is really important to perform analysis and create model in a controled environment. For the project, we'll use [Anadonda](https://www.anaconda.com/), an open ecosystem for sourcing, building, and deploying data science and AI initiatives.
