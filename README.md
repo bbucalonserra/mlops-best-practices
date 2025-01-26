@@ -20,7 +20,7 @@ In this project, we'll create a quick machine learning model and apply best prac
   - [5.1 Runs in Experiment](#51-runs-in-experiment)
   - [5.2 Registering Experiment in a Model](#52-registering-experiment-in-a-model)
 - [6. Productizing the Model](#6-productizing-the-model)
-- [7. Unitary Test](#7-unitary-test)
+- [7. Unity Test](#7-unity-test)
 
 ## 1. Creating ML Flow Environment
 The first step is to download Python packages and create environements with the specific configurations (e.g. Python 3.13) and libraries in specific versions. This step is really important to perform analysis and create model in a controled environment. For the project, we'll use [Anadonda](https://www.anaconda.com/), an open ecosystem for sourcing, building, and deploying data science and AI initiatives.
@@ -259,8 +259,8 @@ proba = model.predict_proba(X)
 proba
 ```
 
-## 7. Unitary Test
-Applying unitary test in order to check if the received dataset has all columns. Check the file [HERE](https://github.com/bbucalonserra/mlops-best-practices/blob/main/test/test_unitary.py).
+## 7. Unity Test
+Applying unity test in order to check if the received dataset has all columns. Check the file [HERE](https://github.com/bbucalonserra/mlops-best-practices/blob/main/test/test_unitary.py).
 
 
 import pandas as pd
