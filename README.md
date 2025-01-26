@@ -147,3 +147,33 @@ To complete, you can choose the best run and click in the best run and register 
 
 ![Registered Model in Models Page](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/experiment-registered-in-model.PNG)
 *Figure 19: Registered Model in Models Page*
+
+
+## 6. Productizing the Model
+One way to productize the model is to create a script that collects the last experiment registered in the models. This is done by using [THIS SCRIPT](https://github.com/bbucalonserra/mlops-best-practices/blob/main/train.py´).
+
+```python
+# %%
+import mlflow.client
+import pandas as pd
+
+import mlflow
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+
+# %%
+client = mlflow.client.MlflowClient()
+version = max([int(i.version) for i in client.get_latest_versions("churn-model")])
+
+# %%
+model = mlflow.sklearn.load_model(f"models:/churn-model/{version}")
+
+# %%
+df = pd.read_csv("data/abt.csv", sep=",")
+df
+
+# %%
+X = df.head()[model.feature_names_in_]
+proba = model.predict_proba(X)
+proba
+```
+
