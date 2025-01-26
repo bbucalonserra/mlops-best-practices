@@ -117,6 +117,70 @@ mlflow.log_metrics({"acc_train": acc_train, "acc_test": acc_test})
 
 This part of the code is responsible to collect the trainning information and the metrics in order to store in ML Flow.
 
+### 4.3 Final Code
+The final code in the file is:
+
+```python
+# %%
+import pandas as pd
+from sklearn import model_selection
+from sklearn import tree
+from sklearn import metrics
+from sklearn import ensemble
+import mlflow
+
+# %%
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_experiment(experiment_id=243927022239586130)
+
+# %%
+df = pd.read_csv("data/abt.csv", sep=",")
+
+features = df.columns[2:-1]
+target = "churn_flag"
+
+X = df[features]
+y = df[target]
+
+df.head()
+# %%
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
+                                                                    test_size=0.2,
+                                                                    random_state=42)
+
+print("Train:", y_train.mean())
+print("Test:", y_test.mean())
+
+# %%
+
+with mlflow.start_run():
+
+    mlflow.sklearn.autolog()
+
+    # clf = tree.DecisionTreeClassifier(min_samples_leaf=100,
+    #                                   min_samples_split=10,
+    #                                   random_state=42)
+
+    clf = ensemble.RandomForestClassifier(n_estimators=500,
+                                          min_samples_leaf=35,
+                                          random_state=42)
+    clf.fit(X_train, y_train)
+
+    y_train_predict = clf.predict(X_train)
+    y_test_predict = clf.predict(X_test)
+
+    acc_train = metrics.accuracy_score(y_train, y_train_predict)
+    acc_test = metrics.accuracy_score(y_test, y_test_predict)
+
+    mlflow.log_metrics({"acc_train": acc_train, "acc_test": acc_test})
+
+
+# %%
+print("Acurácia train:", acc_train)
+print("Acurácia test:", acc_test)
+# %%
+```
+
 
 
 ## 5 Script and ML Flow
