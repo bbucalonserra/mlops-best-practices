@@ -50,7 +50,7 @@ In addition, we must install all libraries in this environment, in our case, we'
 
 Thus, we must install the libraries we'll use in the environment. We must: `pip install pandas scikit-learn mlflow`:
 ![Installing Libraries](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/pip-install-libraries-environment.PNG)  
-*Figure 7: Installing Libraries*
+*Figure 8: Installing Libraries*
 
 **NOTE: this is the environment that the executer (KERNEL) will use to execute the python scripts.**
 
@@ -60,27 +60,27 @@ Type the port into the browser and open the ML Flow. A model is associated with 
 ### 3.1 General ML Flow
 
 ![Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/mlflow-flow-chart.PNG)  
-*Figure 8: Flow Chart of ML Flow*
+*Figure 9: Flow Chart of ML Flow*
 
 
 ![Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/ml-flow-models.png)  
-*Figure 9: Model*
+*Figure 10: Model*
 
 
 ![Experiments](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/ml-flow-experiments.png)  
-*Figure 10: Experiments*
+*Figure 11: Experiments*
 
 
 ### 3.2 Creating Model
 We'll create our model for the project.
 ![Create Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/creating-model.PNG)  
-*Figure 11: Create Model*
+*Figure 12: Create Model*
 
 
 ### 3.3 Creating Experiment
 Creating an experiment for our project.
 ![Create Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/churn-experiment-created.PNG)  
-*Figure 12: Create Experiment*
+*Figure 13: Create Experiment*
 
 
 Now, the ML Flow is properly set.
@@ -93,23 +93,57 @@ There are a few code lines we should add in order to connect the script with ML 
 
 
 ![Finding Experiment ID](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/experiment-id.png)  
-*Figure 14:Finding Experiment ID*
+*Figure 14: Finding Experiment ID*
 
 
+### 4.1 Port and Experiment ID
 The code the must be add can be found below, right after importing the libraries:
 ```python
 import mlflow
 
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_experiment(experiment_id=966213590755579700)
+mlflow.set_experiment(experiment_id=243927022239586130)
 ```
 
 
+### 4.2 Autolog and Metrics
+We also need to write our trainning script inside the function below:
+```python
+with mlflow.start_run():
+
+    mlflow.sklearn.autolog()
+
+    (...)
+
+mlflow.log_metrics({"acc_train": acc_train, "acc_test": acc_test})
+```
+
+This part of the code is responsible to collect the trainning information and the metrics in order to store in ML Flow.
 
 
 
+## 5 Script and ML Flow
+Now, everytime the script is ran, the results will be stored in the experiments. It's important now to remanage this page. So, we'll remove some columns we're not using and leave only the ones for comparisson of different runs. Let's put `acc_test, acc_train, min_sample_leafs, min_samples_sp`. Now, wan can run with different paramethers and check their results in a single page, including the duration of the algorithm (in order to checkc performance).
 
+### 5.1 Runs in Experiment
+Let's check the runs and what's inside of it.
 
+![Runs](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/experiment-runs.PNG)
+*Figure 15: Runs*
 
+By clicking in a run, **we can check all informations about the trained experiment, including the artifacts and the model in binary.**
 
+![Inside Runs](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/inside-run.png)
+*Figure 16: Inside Runs*
 
+![Inside Runs](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/experiment-artifacts.png)
+*Figure 17: Inside Runs*
+
+### 5.2 Registering Experiment in a Model
+To complete, you can choose the best run and click in the best run and register it in the model.
+
+![Registering Model](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/register-model.png)
+*Figure 18: Registering Model*
+
+![Registered Model in Models Page](https://github.com/bbucalonserra/mlops-best-practices/blob/main/images/experiment-registered-in-model.PNG)
+*Figure 19: Registered Model in Models Page*
