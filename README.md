@@ -1,4 +1,4 @@
-# MLOps Best Practices - ML FLOW
+# ML Operations - Project Life Cycle
 In this project, we'll create a machine learning model and apply best practices on it, including ML Flow to manage the life cycle of the models and track its results and Unity tests.
 
 ## 1. Creating ML Flow Environment
