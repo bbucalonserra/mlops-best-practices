@@ -118,7 +118,7 @@ mlflow.log_metrics({"acc_train": acc_train, "acc_test": acc_test})
 This part of the code is responsible to collect the trainning information and the metrics in order to store in ML Flow.
 
 ### 4.3 Final Code
-The final code for the train file in [THIS SCRIPT](https://github.com/bbucalonserra/mlops-best-practices/blob/main/predict.py´) is: 
+The final code for the train file in [THIS SCRIPT](https://github.com/bbucalonserra/mlops-best-practices/blob/main/train-prediction/train.py) is: 
 
 ```python
 # %%
@@ -211,7 +211,7 @@ To complete, you can choose the best run and click in the best run and register 
 
 
 ## 6. Productizing the Model
-One way to productize the model is to create a script that collects the last experiment registered in the models. This is done by using [THIS SCRIPT](https://github.com/bbucalonserra/mlops-best-practices/blob/main/predict.py´).
+One way to productize the model is to create a script that collects the last experiment registered in the models. This is done by using [THIS SCRIPT](https://github.com/bbucalonserra/mlops-best-practices/blob/main/train-prediction/predict.py).
 
 ```python
 # %%
