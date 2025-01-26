@@ -1,5 +1,6 @@
 # ML Operations - Project Life Cycle
 In this project, we'll create a quick machine learning model and apply ML Operations best practices on it, including creating an environment for Python, ML Flow environment to manage the life cycle of the experiments and track its results and unity tests using PyTest.
+
 **NOTE: some best practices, such as usage of Cloud Computing, Databricks flow, clusters and Apache Spark framework (instead of Pandas API) is not going to be shown here, since this is a local project.**
 
 # Table of Contents
